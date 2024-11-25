@@ -1,8 +1,10 @@
 plugins {
+    id("kotlin-kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -38,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -54,6 +59,10 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
