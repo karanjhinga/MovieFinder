@@ -50,7 +50,11 @@ fun MainContent() {
 
         composable<Screens.MovieDetail> {
             val movie = it.toRoute<Screens.MovieDetail>()
-            MovieDetailScreen(movie)
+            val navController = LocalNavController.current
+
+            MovieDetailScreen(movie = movie, onBackClicked = {
+                navController.navigateUp()
+            })
         }
     }
 }

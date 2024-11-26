@@ -49,7 +49,12 @@ private fun MoviesGridPreview() {
 
 val previewList =
     listOf(
-        Movie(1, "Opennheimer", "Some description about opennheimer movie", null),
+        Movie(
+            1,
+            "Opennheimer",
+            "Oppenheimer (2023) is a historical drama directed by Christopher Nolan, chronicling the life of J. Robert Oppenheimer, the \"father of the atomic bomb.\" The film explores his pivotal role in the Manhattan Project during World War II, the moral dilemmas of creating nuclear weapons, and the intense political fallout that followed. With a stellar cast led by Cillian Murphy, it delves into science, ambition, and the profound consequences of Oppenheimer's groundbreaking yet devastating work.",
+            null
+        ),
         Movie(2, "Dr Strange", "Some description about dr strange movie", null),
         Movie(
             3,
