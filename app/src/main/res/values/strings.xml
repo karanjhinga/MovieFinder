@@ -5,4 +5,5 @@
     <string name="no_movies_found">No movies found, please try changing your search text!</string>
     <string name="something_went_wrong">Something went wrong, please try again later.</string>
     <string name="retry">Retry</string>
+    <string name="search_placeholder">Search Movies</string>
 </resources>
