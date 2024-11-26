@@ -17,6 +17,7 @@ import javax.inject.Inject
 
 interface MovieRepository {
     suspend fun getTrendingMovies(): Result<List<Movie>, NetworkError>
+    suspend fun searchMovie(query: String): Result<List<Movie>, NetworkError>
 }
 
 class MovieRepositoryImpl @Inject constructor(
@@ -28,6 +29,19 @@ class MovieRepositoryImpl @Inject constructor(
             httpClient.get {
                 url(constructUrl(Endpoints.TRENDING_MOVIES))
                 parameter("api_key", BuildConfig.TMDB_API_KEY)
+            }
+        }.map { it.results }
+    }
+
+    override suspend fun searchMovie(query: String): Result<List<Movie>, NetworkError> {
+        return safeCall<MoviesResponse> {
+            httpClient.get {
+                url {
+                    url(constructUrl(Endpoints.SEARCH))
+                    parameter("api_key", BuildConfig.TMDB_API_KEY)
+                    parameter("include_adult", true)
+                    parameter("query", query)
+                }
             }
         }.map { it.results }
     }

@@ -48,14 +48,14 @@ class MovieListViewModel @Inject constructor(
     private suspend fun loadMovies(query: String) {
         _state.value = MovieListState.Loading
 
-        movieRepository
-            .getTrendingMovies()
-            .onSuccess { movies ->
-                _state.value = MovieListState.Success(movies)
-            }
-            .onError { error ->
-                _state.value = MovieListState.Error(error)
-            }
+        val result = if (query.isBlank()) movieRepository.getTrendingMovies()
+        else movieRepository.searchMovie(query)
+
+        result.onSuccess { movies ->
+            _state.value = MovieListState.Success(movies)
+        }.onError { error ->
+            _state.value = MovieListState.Error(error)
+        }
     }
 }
 
