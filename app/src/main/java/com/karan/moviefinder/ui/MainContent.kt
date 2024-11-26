@@ -44,7 +44,7 @@ fun MainContent() {
                 state = state,
                 onTextChange = viewModel::onSearchTextChange,
                 onMovieClicked = onMovieClicked,
-                onRetry = { viewModel.onSearchTextChange(searchText) }
+                onRetry = viewModel::onRetry
             )
         }
 

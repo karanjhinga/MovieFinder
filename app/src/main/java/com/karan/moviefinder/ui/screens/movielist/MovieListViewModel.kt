@@ -39,6 +39,12 @@ class MovieListViewModel @Inject constructor(
         _query.value = text
     }
 
+    fun onRetry() {
+        viewModelScope.launch {
+            loadMovies(query.value)
+        }
+    }
+
     private suspend fun loadMovies(query: String) {
         _state.value = MovieListState.Loading
 
